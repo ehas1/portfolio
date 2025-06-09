@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <title>Eric Haslam</title>
+  <meta name="description" content="Eric Haslam's personal website."/>
+  <meta property="og:title" content="Eric Haslam"/>
+  <meta property="og:description" content="Eric Haslam's personal website."/>
+  <meta property="og:type" content="website"/>
+  
+  <!-- Space Grotesk Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path stroke='%237FDBFF' stroke-width='2' fill='none' d='M30,20 L30,80 M30,20 L70,20 M30,50 L60,50 M30,80 L70,80 M70,20 L70,80'/></svg>"/>
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path stroke='%237FDBFF' stroke-width='2' fill='none' d='M30,20 L30,80 M30,20 L70,20 M30,50 L60,50 M30,80 L70,80 M70,20 L70,80'/></svg>"/>
+
+  <style>
+    :root {
+      --navy: #001f3f;
+      --light-blue: #7FDBFF;
+      --white: #ffffff;
+      --light-white: rgba(255, 255, 255, 0.8);
+      --gray: rgba(255, 255, 255, 0.6);
+      --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font-mono: 'SF Mono','Fira Code','Fira Mono','Roboto Mono',monospace;
+      
+      --fz-xxs: 12px;
+      --fz-xs: 13px;
+      --fz-sm: 14px;
+      --fz-md: 16px;
+      --fz-lg: 18px;
+      --fz-xl: 20px;
+      --fz-xxl: 22px;
+      --fz-heading: 32px;
+      
+      --border-radius: 4px;
+      --nav-height: clamp(60px, 10vh, 70px);
+      --nav-scroll-height: 70px;
+      
+      --tab-height: 42px;
+      --tab-width: 120px;
+      
+      --easing: cubic-bezier(0.645,0.045,0.355,1);
+      --transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+
+      /* Add responsive sizing variables */
+      --max-width: min(1000px, 90vw);
+      --horizontal-padding: clamp(25px, 5vw, 50px);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      background-color: var(--navy);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: var(--fz-xl);
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
+      background-color: var(--navy);
+      border-bottom: 1px solid var(--light-blue);
+      z-index: 10;
+      padding: 0 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+
+    nav.nav-hidden {
+      transform: translateY(-100%);
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      color: var(--light-blue);
+      transition: var(--transition);
+    }
+
+    .logo:hover {
+      color: var(--white);
+      transform: scale(1.05);
+    }
+
+    .logo svg {
+      width: 100%;
+      height: 100%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    nav .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      margin-left: 30px;
+      font-family: var(--font-mono);
+      font-size: var(--fz-sm);
+      transition: var(--transition);
+    }
+
+    nav a:hover {
+      color: var(--light-blue);
+    }
+
+    .social-sidebar {
+      position: fixed;
+      bottom: 0;
+      left: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .social-sidebar:after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: clamp(70px, 10vh, 90px);
+      margin: 0 auto;
+      background-color: var(--light-blue);
+    }
+
+    .social-sidebar a {
+      color: var(--white);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: var(--fz-xxs);
+      letter-spacing: 0.1em;
+      writing-mode: vertical-rl;
+      margin: clamp(10px, 2vh, 20px) auto;
+      padding: 10px;
+      transition: var(--transition);
+    }
+
+    .social-sidebar a:hover {
+      color: var(--light-blue);
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 1080px) {
+      .social-sidebar {
+        left: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .social-sidebar {
+        display: none;
+      }
+    }
+
+    @media (min-height: 800px) {
+      .social-sidebar:after {
+        height: 120px;
+      }
+    }
+
+    #root {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      margin: 0 auto;
+      width: 100%;
+      max-width: var(--max-width);
+      padding: calc(var(--nav-height) + 30px) var(--horizontal-padding);
+      flex: 1;
+    }
+
+    section {
+      margin: 0 auto;
+      padding: clamp(50px, 10vh, 100px) 0;
+      max-width: 100%;
+    }
+
+    .big-heading {
+      margin: 0;
+      font-size: clamp(50px, 10vw, 90px);
+      color: var(--white);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .greeting {
+      color: var(--light-blue);
+      margin-bottom: 20px;
+      font-family: var(--font-mono);
+      font-size: var(--fz-md);
+      font-weight: 400;
+    }
+
+    .subtitle {
+      color: var(--light-blue);
+      margin: 0 0 20px 0;
+      font-size: var(--fz-md);
+      font-family: var(--font-mono);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .intro-text {
+      margin: 20px 0;
+      max-width: 540px;
+      color: var(--gray);
+      font-size: var(--fz-md);
+      line-height: 1.6;
+    }
+
+    .contact-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 25px;
+      background-color: transparent;
+      border: 1px solid var(--light-blue);
+      border-radius: var(--border-radius);
+      color: var(--light-blue);
+      font-family: var(--font-mono);
+      font-size: var(--fz-sm);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .contact-button:hover {
+      background-color: rgba(127, 219, 255, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .highlight {
+      color: var(--light-blue);
+    }
+
+    .highlight-link {
+      color: var(--light-blue);
+      display: inline-block;
+      position: relative;
+      text-decoration: none;
+    }
+
+    .highlight-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--light-blue);
+      transition: var(--transition);
+    }
+
+    .highlight-link:hover::after {
+      width: 100%;
+    }
+
+    .numbered-heading {
+      display: flex;
+      align-items: center;
+      position: relative;
+      margin: 10px 0 40px;
+      width: 100%;
+      font-size: var(--fz-heading);
+      font-weight: 600;
+      color: var(--white);
+      white-space: nowrap;
+    }
+
+    .numbered-heading:before {
+      position: relative;
+      counter-increment: section;
+      content: "0" counter(section) ".";
+      margin-right: 10px;
+      color: var(--light-blue);
+      font-family: var(--font-mono);
+      font-size: var(--fz-xl);
+      font-weight: 400;
+    }
+
+    .numbered-heading:after {
+      content: "";
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 1px;
+      margin-left: 20px;
+      background-color: var(--light-blue);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 50px;
+      font-size: var(--fz-md);
+    }
+
+    li:before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--light-blue);
+    }
+
+    li strong {
+      color: var(--light-blue);
+      font-size: var(--fz-lg);
+      font-weight: 500;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    li strong a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .date {
+      font-family: var(--font-mono);
+      font-size: var(--fz-xxs);
+      color: var(--light-white);
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin: 0;
+      color: var(--gray);
+      font-size: var(--fz-md);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px 0;
+      font-size: var(--fz-xxs);
+      color: var(--gray);
+      font-family: var(--font-mono);
+      margin-bottom: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer a {
+      color: var(--light-blue);
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .footer a:hover {
+      opacity: 0.8;
+    }
+
+    .ollie-credit {
+      font-family: var(--font-mono);
+      font-size: var(--fz-xxs);
+      color: var(--gray);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      height: 0;
+      overflow: hidden;
+    }
+
+    html.at-bottom .ollie-credit {
+      opacity: 0.7;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 100px 25px;
+      }
+      section {
+        padding: 80px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding: 100px 15px;
+      }
+      section {
+        padding: 60px 0;
+      }
+      .numbered-heading:after {
+        margin-left: 10px;
+      }
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 50px;
+      margin-bottom: 50px;
+      flex-direction: row-reverse;
+    }
+
+    .header-content {
+      flex: 1;
+    }
+
+    .profile-image-container {
+      flex-shrink: 0;
+      width: 300px;
+      height: 300px;
+      position: relative;
+      border-radius: 5px;
+      margin-top: 30px;
+      transition: var(--transition);
+    }
+
+    .profile-image-container:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: var(--light-blue);
+      mix-blend-mode: screen;
+      border-radius: 5px;
+      opacity: 0.3;
+      transition: var(--transition);
+    }
+
+    .profile-image-container:hover {
+      transform: scale(1.05);
+    }
+
+    .profile-image-container:hover:after {
+      opacity: 0.4;
+    }
+
+    .profile-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      border-radius: 5px;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .profile-image-container {
+        width: 250px;
+        height: 250px;
+        margin: 50px auto 0;
+      }
+    }
+
+    /* Dog follower styles */
+    .dog-follower {
+      position: fixed;
+      width: 50px;
+      height: 40px;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+
+    .dog-follower svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+    }
+
+    .dog-follower.running .front-leg {
+      animation: frontLegRun 0.4s infinite alternate ease-in-out;
+    }
+
+    .dog-follower.running .back-leg {
+      animation: backLegRun 0.4s infinite alternate ease-in-out;
+    }
+
+    @keyframes frontLegRun {
+      0% {
+        d: path("M60,65 L60,75");
+      }
+      100% {
+        d: path("M60,65 L63,72");
+      }
+    }
+
+    @keyframes backLegRun {
+      0% {
+        d: path("M40,65 L40,75");
+      }
+      100% {
+        d: path("M40,65 L37,72");
+      }
+    }
+
+    .dog-follower.running {
+      animation: run 0.4s infinite alternate ease-in-out;
+    }
+
+    @keyframes run {
+      0% {
+        transform: translate(-50%, -50%) translateY(0);
+      }
+      100% {
+        transform: translate(-50%, -50%) translateY(-2px);
+      }
+    }
+
+    .dog-follower.sitting {
+      animation: sit 0.3s forwards;
+    }
+
+    @keyframes sit {
+      0% {
+        transform: translate(-50%, -50%) scaleY(1);
+      }
+      100% {
+        transform: translate(-50%, -50%) scaleY(0.95);
+      }
+    }
+
+    /* Loader styles */
+    .loader-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--navy);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+
+    .loader-container.fade-out {
+      opacity: 0;
+      transform: scale(0.95);
+      background-color: transparent;
+    }
+
+    .loader {
+      width: 100px;
+      height: 100px;
+      transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+
+    .loader-container.fade-out .loader {
+      transform: scale(0.9);
+    }
+
+    .loader path {
+      stroke: var(--light-blue);
+      stroke-width: 2;
+      fill: none;
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      animation: draw 1.5s ease forwards;
+    }
+
+    @keyframes draw {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    /* Add styles for Ollie's credit */
+    .ollie-credit {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-family: var(--font-mono);
+      font-size: var(--fz-xxs);
+      color: var(--gray);
+      opacity: 0.7;
+      pointer-events: none;
+      z-index: 8;
+    }
+
+    @media (max-width: 768px) {
+      .ollie-credit {
+        display: none;
+      }
+    }
+
+    .position {
+      color: var(--light-blue);
+      font-family: var(--font-mono);
+      font-size: var(--fz-xs);
+      margin-bottom: 2px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      visibility: hidden;
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      will-change: opacity, visibility, transform;
+    }
+
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+
+    /* Delay each section's animation */
+    #header { transition-delay: 0.1s; }
+    #experience { transition-delay: 0.3s; }
+    #projects { transition-delay: 0.5s; }
+    #volunteer { transition-delay: 0.7s; }
+    .footer { transition-delay: 0.9s; }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      margin-left: 15px;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: var(--fz-xxs);
+      color: var(--gray);
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: relative;
+      display: inline-block;
+      width: 26px;
+      height: 14px;
+      background-color: transparent;
+      border: 1px solid var(--gray);
+      border-radius: 14px;
+      margin-left: 8px;
+      transition: var(--transition);
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 10px;
+      width: 10px;
+      left: 1px;
+      bottom: 1px;
+      background-color: var(--gray);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .toggle-switch:hover .toggle-slider {
+      border-color: var(--light-blue);
+    }
+
+    .toggle-switch:hover .toggle-slider:before {
+      background-color: var(--light-blue);
+    }
+
+    input:checked + .toggle-slider {
+      border-color: var(--light-blue);
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(12px);
+      background-color: var(--light-blue);
+    }
+
+    .dog-follower.hidden {
+      display: none;
+    }
+
+    /* Media Grid Styles */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+      gap: clamp(20px, 4vw, 30px);
+      margin-top: clamp(20px, 4vh, 40px);
+    }
+
+    .media-item {
+      position: relative;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+      background-color: var(--navy);
+      border-top: 1px solid var(--light-blue);
+      padding-top: 15px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .media-image-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2/3;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+
+    .media-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      filter: grayscale(100%) contrast(90%) brightness(90%);
+    }
+
+    .media-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--light-blue);
+      mix-blend-mode: screen;
+      opacity: 0.2;
+      transition: opacity 0.3s ease;
+    }
+
+    .media-content {
+      position: relative;
+      padding: 0 15px 15px;
+      transform: none;
+      background: none;
+    }
+
+    .media-title {
+      color: var(--white);
+      font-size: var(--fz-md);
+      margin-bottom: 5px;
+    }
+
+    .media-creator {
+      color: var(--light-blue);
+      font-family: var(--font-mono);
+      font-size: var(--fz-xxs);
+      margin-bottom: 10px;
+    }
+
+    .media-description {
+      color: var(--gray);
+      font-size: var(--fz-sm);
+      line-height: 1.5;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .media-item:hover .media-image {
+      transform: scale(1.05);
+    }
+
+    .media-item:hover .media-overlay {
+      opacity: 0.3;
+    }
+
+    .media-item:hover .media-description {
+      opacity: 1;
+      max-height: 200px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .media-grid {
+        grid-template-columns: repeat(auto-fill, minmax(min(160px, 100%), 1fr));
+      }
+
+      .media-title {
+        font-size: var(--fz-sm);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .media-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .media-content {
+        padding: 0 10px 10px;
+      }
+    }
+
+    /* Update hover behavior for touch devices */
+    @media (hover: none) {
+      .media-content {
+        transform: translateY(0);
+        background: linear-gradient(transparent, rgba(0, 31, 63, 0.95) 20%, var(--navy));
+      }
+
+      .media-description {
+        display: none;
+      }
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .toggle-switch {
+      margin-left: 15px;
+    }
+
+    @media (max-width: 768px) {
+      .toggle-switch {
+        display: none;
+      }
+    }
+
+    /* Add specific positioning for certain images */
+    img[src*="larsandtherealgirlposter"] {
+      object-position: center 20%;
+    }
+
+    img[src*="oppenheimercover"] {
+      object-position: center 40%;
+    }
+
+    img[src*="whywehurtcover"] {
+      object-position: center 75%;
+    }
+
+    /* Remove wave animation styles */
+    .wave-text,
+    .wave-letter,
+    .wave-letter.space {
+      display: initial;
+      white-space: initial;
+      transform: none;
+      animation: none;
+      width: auto;
+    }
+
+    /* Add after your existing media grid styles */
+    .media-item.featured {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: 1/1;
+    }
+
+    .media-item.featured .media-image-container {
+      aspect-ratio: 1/1;
+    }
+
+    .media-item.featured .media-title {
+      font-size: var(--fz-xl);
+    }
+
+    .media-item.featured .media-description {
+      font-size: var(--fz-md);
+    }
+
+    @media (max-width: 768px) {
+      .media-item.featured {
+        grid-column: span 2;
+        grid-row: span 1;
+        aspect-ratio: 3/4;
+      }
+
+      .media-item.featured .media-image-container {
+        aspect-ratio: 2/3;
+      }
+    }
+
+    /* Add after your existing image position styles */
+    img[src*="thereisnootherhome"] {
+      object-position: center center;
+      transform: scale(1.1);
+    }
+
+    .media-item.featured:hover .media-image {
+      transform: scale(1.15);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Loader -->
+  <div class="loader-container">
+    <div class="loader">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <!-- E shape -->
+        <path d="M30,20 L30,80" />
+        <path d="M30,20 L70,20" />
+        <path d="M30,50 L80,50" />
+        <path d="M30,80 L70,80" />
+        <!-- H shape -->
+        <path d="M80,20 L80,80" />
+      </svg>
+    </div>
+  </div>
+  <div class="dog-follower">
+    <svg viewBox="0 0 100 100" fill="none" stroke="var(--light-blue)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Body (oval shape) -->
+      <path class="body" d="M30,60 Q35,50 50,50 Q65,50 70,60 Q65,70 50,70 Q35,70 30,60" />
+      <!-- Front leg -->
+      <path class="front-leg" d="M60,65 L60,75" />
+      <!-- Back leg -->
+      <path class="back-leg" d="M40,65 L40,75" />
+      <!-- Neck -->
+      <path class="neck" d="M65,55 L70,50" />
+      <!-- Head -->
+      <path class="head" d="M70,50 L80,50" />
+      <!-- Snout -->
+      <path class="snout" d="M80,50 Q85,50 85,45" />
+      <!-- Ear -->
+      <path class="ear" d="M72,45 L75,40" />
+      <!-- Eye -->
+      <circle cx="77" cy="47" r="1.5" fill="var(--light-blue)" />
+      <!-- Tail -->
+      <path class="tail" d="M32,60 Q28,55 28,50" />
+    </svg>
+  </div>
+  <nav>
+    <div class="logo-container">
+      <a href="#" class="logo" aria-label="home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+          <title>Logo</title>
+          <!-- E shape -->
+          <path d="M30,20 L30,80" />
+          <path d="M30,20 L70,20" />
+          <path d="M30,50 L80,50" />
+          <path d="M30,80 L70,80" />
+          <!-- H shape -->
+          <path d="M80,20 L80,80" />
+        </svg>
+      </a>
+      <label class="toggle-switch">
+        Ollie
+        <input type="checkbox" checked>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#volunteer">Volunteer</a>
+      <a href="#media">Things I've Liked</a>
+    </div>
+  </nav>
+
+  <div class="social-sidebar">
+    <a href="https://linkedin.com/in/erichaslam" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="mailto:ericrhaslam@gmail.com">Email</a>
+  </div>
+
+  <div id="root">
+    <main>
+      <header id="header" class="fade-in-section">
+        <div class="profile-image-container">
+          <img src="images/profile.jpg" alt="Eric Haslam" class="profile-image">
+        </div>
+        <div class="header-content">
+          <h3 class="greeting">Hello! My name is</h3>
+          <h1 class="big-heading">Eric Haslam</h1>
+          <h2 class="subtitle">Artificial Intelligence Researcher &amp; Data Scientist</h2>
+          <div class="intro-text">
+            <p>I'm a junior at <span class="highlight">Brigham Young University</span> pursuing a degree in <a href="https://acme.byu.edu/" target="_blank" rel="noopener noreferrer" class="highlight-link">Applied and Computational Mathematics (ACME)</a> with an emphasis in Biology and a minor in Business. My passion lies in leveraging AI and data to solve complex problems.</p>
+            <p>In my free time, I enjoy staying active through pickleball, basketball, golfing, hiking, and skiing. When I'm not outdoors, I'm into strategic board games with friends and family.</p>
+            <a href="mailto:ericrhaslam@gmail.com" class="contact-button">Get in Touch</a>
+          </div>
+        </div>
+      </header>
+
+      <section id="experience" class="fade-in-section">
+        <h2 class="numbered-heading" style="counter-reset: section 0">Experience</h2>
+        <ul>
+          <li>
+            <strong><a href="https://ai.utah.gov/" target="_blank" rel="noopener noreferrer" class="highlight-link">Utah Office of AI Policy</a></strong>
+            <div class="position">Artificial Intelligence Researcher</div>
+            <div class="date">Jan 2025 – Present</div>
+            <p>Researched AI policy frameworks that contributed to two technical-bill proposals passed to the state legislature. Analyzed XGBoost and neural-network models to inform recommendations for ethical, transparent AI use.</p>
+          </li>
+          <li>
+            <strong><a href="https://www.tevapharm.com/" target="_blank" rel="noopener noreferrer" class="highlight-link">Teva Pharmaceuticals</a></strong>
+            <div class="position">Data Science Intern</div>
+            <div class="date">May 2024 – Dec 2024</div>
+            <p>Built automated SQL pipelines to process and normalize complex pharmaceutical data from 40+ countries, automating translation and cleaning of inconsistent data formats. Built automated SQL pipelines for supplier-list updates and designed interactive Tableau dashboards to monitor compliance—boosting accuracy and speed of audits while handling 200+ vendors and 1,700+ APIs/excipients.</p>
+          </li>
+          <li>
+            <strong><a href="https://labs.chem.byu.edu/dearden-lab" target="_blank" rel="noopener noreferrer" class="highlight-link">BYU Chemistry</a></strong>
+            <div class="position">Dearden Lab</div>
+            <div class="date">Sep 2023 – May 2024</div>
+            <p>20% reduction in per-sample analysis time for cucurbituril binding studies by automating ion activation sequences and CCS data processing scripts in Python.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section id="projects" class="fade-in-section">
+        <h2 class="numbered-heading" style="counter-reset: section 1">Projects</h2>
+        <ul>
+          <li>
+            <strong>AI Policy Bill Proposals</strong>
+            <p>Co-authored two data-driven technical-bill proposals for the Utah Legislature by translating complex ML insights into policy briefs.</p>
+          </li>
+          <li>
+            <strong>Automated SQL &amp; Tableau Pipeline</strong>
+            <p>Implemented end-to-end SQL pipelines to process and normalize complex pharmaceutical data from 40+ countries, automating translation and cleaning of inconsistent data formats. Built automated SQL pipelines for supplier-list updates and designed interactive Tableau dashboards to monitor compliance—boosting accuracy and speed of audits while handling 200+ vendors and 1,700+ APIs/excipients.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section id="volunteer" class="fade-in-section">
+        <h2 class="numbered-heading" style="counter-reset: section 2">Volunteer/Leadership</h2>
+        <ul>
+          <li>
+            <strong><a href="https://ugandanwaterproject.com/" target="_blank" rel="noopener noreferrer" class="highlight-link">Kirabo's Well</a></strong>
+            <div class="position">Co-President</div>
+            <div class="date">September 2024 - Present</div>
+            <p>Co-founded non-profit organization and orchestrated 5+ fundraising events, generating $50,000+ in donations to fund 2 complete water well projects in underserved Ugandan communities. Managed a team of 35 volunteers and developed partnerships with 4 corporate sponsors, increasing organizational reach by 35%.</p>
+          </li>
+          <li>
+            <strong>Humanitarian Volunteer - Porto Alegre, Brazil</strong>
+            <div class="date">July 2021 - May 2023</div>
+            <p>Coordinated activities for 100+ volunteers across multiple regions, improving operational efficiency by 25%. Delivered weekly training sessions to 20+ team members and established communication protocols between 5 Brazilian regions, enhancing information flow.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section id="media">
+        <h2 class="numbered-heading" style="counter-reset: section 3">Things I've Liked Recently</h2>
+        <div class="media-grid">
+          <div class="media-item featured">
+            <div class="media-image-container">
+              <img src="images/thereisnootherhome.webp" alt="There Is No Other Home" class="media-image">
+              <div class="media-overlay"></div>
+            </div>
+            <div class="media-content">
+              <div class="media-title">There Is No Other Home</div>
+              <div class="media-creator">USSR, 1986</div>
+              <div class="media-description">Take care.</div>
+            </div>
+          </div>
+
+          <div class="media-item">
+            <div class="media-image-container">
+              <img src="images/larsandtherealgirlposter.jpg" alt="Lars and the Real Girl" class="media-image">
+              <div class="media-overlay"></div>
+            </div>
+            <div class="media-content">
+              <div class="media-title">Lars and the Real Girl</div>
+              <div class="media-creator">Dir. Craig Gillespie</div>
+              <div class="media-description">A poignant tale of a shy man's unconventional journey to emotional connection through an unusual relationship that transforms his entire community.</div>
+            </div>
+          </div>
+
+          <div class="media-item">
+            <div class="media-image-container">
+              <img src="images/oppenheimercover.jpg" alt="American Prometheus" class="media-image">
+              <div class="media-overlay"></div>
+            </div>
+            <div class="media-content">
+              <div class="media-title">American Prometheus</div>
+              <div class="media-creator">By Kai Bird</div>
+              <div class="media-description">The definitive biography of J. Robert Oppenheimer, exploring the brilliant, complex mind behind the atomic bomb and his moral struggle with its creation.</div>
+            </div>
+          </div>
+
+          <div class="media-item">
+            <div class="media-image-container">
+              <img src="images/whywehurtcover.jpg" alt="Why We Hurt" class="media-image">
+              <div class="media-overlay"></div>
+            </div>
+            <div class="media-content">
+              <div class="media-title">Why We Hurt</div>
+              <div class="media-creator">By Frank T. Vertosick Jr.</div>
+              <div class="media-description">A thought-provoking exploration of pain's evolutionary purpose and its crucial role in human survival and development.</div>
+            </div>
+          </div>
+
+          <div class="media-item">
+            <div class="media-image-container">
+              <img src="images/beautifulboyposter.jpg" alt="Beautiful Boy" class="media-image">
+              <div class="media-overlay"></div>
+            </div>
+            <div class="media-content">
+              <div class="media-title">Beautiful Boy</div>
+              <div class="media-creator">Dir. Felix van Groeningen</div>
+              <div class="media-description">A heart-wrenching portrayal of addiction and recovery through the lens of a father-son relationship, based on dual memoirs by David and Nic Sheff.</div>
+            </div>
+          </div>
+
+          <div class="media-item">
+            <div class="media-image-container">
+              <img src="images/alphago.jpeg" alt="AlphaGo" class="media-image">
+              <div class="media-overlay"></div>
+            </div>
+            <div class="media-content">
+              <div class="media-title">AlphaGo</div>
+              <div class="media-creator">Dir. Greg Kohs</div>
+              <div class="media-description">The story of the first computer program to defeat a professional Go player, marking a milestone in artificial intelligence.</div>
+            </div>
+          </div>
+
+          <div class="media-item">
+            <div class="media-image-container">
+              <img src="images/spillovercover.jpeg" alt="Spillover" class="media-image">
+              <div class="media-overlay"></div>
+            </div>
+            <div class="media-content">
+              <div class="media-title">Spillover</div>
+              <div class="media-creator">By David Quammen</div>
+              <div class="media-description">A prescient investigation into animal infections and the next human pandemic, revealing how viruses leap from wildlife to humans.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer fade-in-section">
+      <div>Based on design by <a href="https://www.wanqizhu.com/" target="_blank" rel="noopener noreferrer">Wanqi Zhu</a> & <a href="https://brittanychiang.com" target="_blank" rel="noopener noreferrer">Brittany Chiang</a></div>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const dogFollower = document.querySelector('.dog-follower');
+      let isDogVisible = true;
+
+      // Hide dog initially
+      dogFollower.style.opacity = '0';
+
+      // Add toggle functionality
+      const toggleSwitch = document.querySelector('.toggle-switch input');
+      toggleSwitch.addEventListener('change', () => {
+        isDogVisible = toggleSwitch.checked;
+        dogFollower.classList.toggle('hidden', !isDogVisible);
+      });
+
+      // Nav scroll behavior
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+
+      function updateNav() {
+        const nav = document.querySelector('nav');
+        const currentScrollY = window.scrollY;
+        
+        if (currentScrollY > lastScrollY) {
+          nav.classList.add('nav-hidden');
+        } else {
+          nav.classList.remove('nav-hidden');
+        }
+        
+        lastScrollY = currentScrollY;
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          window.requestAnimationFrame(function() {
+            updateNav();
+          });
+          ticking = true;
+        }
+      });
+
+      // Loading animation
+      setTimeout(() => {
+        const loader = document.querySelector('.loader-container');
+        loader.classList.add('fade-out');
+        setTimeout(() => {
+          loader.style.display = 'none';
+          initSectionAnimation();
+          initDogFollower();
+        }, 500);
+      }, 1800);
+
+      function initSectionAnimation() {
+        const sections = document.querySelectorAll('.fade-in-section');
+        sections.forEach(section => {
+          section.classList.add('is-visible');
+        });
+
+        const observerOptions = {
+          threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        sections.forEach(section => {
+          observer.observe(section);
+        });
+      }
+
+      function initDogFollower() {
+        dogFollower.style.opacity = '1';
+        
+        let lastMouseX = 0;
+        let lastMouseY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        let sitTimeout;
+        let velocity = { x: 0, y: 0 };
+        let target = { x: 0, y: 0 };
+        let wanderOffset = { x: 0, y: 0 };
+        const maxSpeed = 2;
+        const acceleration = 0.05;
+        const wanderStrength = 50;
+        const wanderSpeed = 0.02;
+        let time = 0;
+        let isMoving = false;
+
+        function updateDogPosition() {
+          time += 0.016;
+
+          wanderOffset.x = Math.sin(time * wanderSpeed) * wanderStrength;
+          wanderOffset.y = Math.cos(time * 1.3 * wanderSpeed) * wanderStrength;
+
+          target.x = lastMouseX + wanderOffset.x;
+          target.y = lastMouseY + wanderOffset.y;
+
+          const dx = target.x - currentX;
+          const dy = target.y - currentY;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance > 5) {
+            const angle = Math.atan2(dy, dx);
+            const desiredVelocityX = Math.cos(angle) * maxSpeed;
+            const desiredVelocityY = Math.sin(angle) * maxSpeed;
+
+            velocity.x += (desiredVelocityX - velocity.x) * acceleration;
+            velocity.y += (desiredVelocityY - velocity.y) * acceleration;
+
+            currentX += velocity.x + (Math.random() - 0.5);
+            currentY += velocity.y + (Math.random() - 0.5);
+
+            dogFollower.style.left = `${currentX}px`;
+            dogFollower.style.top = `${currentY}px`;
+
+            isMoving = true;
+            dogFollower.classList.remove('sitting');
+            dogFollower.classList.add('running');
+          } else {
+            velocity.x *= 0.95;
+            velocity.y *= 0.95;
+            
+            if (isMoving) {
+              isMoving = false;
+              dogFollower.classList.remove('running');
+              clearTimeout(sitTimeout);
+              sitTimeout = setTimeout(() => {
+                dogFollower.classList.add('sitting');
+              }, 1000);
+            }
+          }
+
+          requestAnimationFrame(updateDogPosition);
+        }
+
+        lastMouseX = window.innerWidth / 2;
+        lastMouseY = window.innerHeight / 2;
+        currentX = lastMouseX;
+        currentY = lastMouseY;
+        
+        dogFollower.style.left = `${currentX}px`;
+        dogFollower.style.top = `${currentY}px`;
+
+        document.addEventListener('mousemove', function(e) {
+          lastMouseX = e.clientX;
+          lastMouseY = e.clientY;
+        });
+
+        document.addEventListener('mouseleave', function() {
+          if (isMoving) {
+            isMoving = false;
+            dogFollower.classList.remove('running');
+            clearTimeout(sitTimeout);
+            sitTimeout = setTimeout(() => {
+              dogFollower.classList.add('sitting');
+            }, 1000);
+          }
+        });
+
+        document.addEventListener('mouseenter', function() {
+          dogFollower.classList.remove('sitting');
+        });
+
+        updateDogPosition();
+      }
+
+      window.addEventListener('scroll', function() {
+        const html = document.documentElement;
+        const atBottom = (window.innerHeight + window.pageYOffset) >= document.documentElement.scrollHeight - 10;
+        html.classList.toggle('at-bottom', atBottom);
+      });
+
+      document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          } else {
+            document.querySelector(targetId).scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
