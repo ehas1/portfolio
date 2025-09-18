@@ -200,6 +200,17 @@ li {
   margin-bottom: 4rem;
 }
 
+.experience-item {
+  margin-bottom: 4rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.experience-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
 .position {
   font-size: 1.2rem;
   margin: 0.5rem 0;
@@ -209,6 +220,51 @@ li {
   font-family: var(--font-mono);
   color: #666;
   margin-bottom: 1rem;
+}
+
+/* Contact Button */
+.contact-section {
+  text-align: center;
+  padding: 3rem 0;
+  margin: 2rem 0;
+}
+
+.contact-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  border-radius: 8px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.contact-button:hover::before {
+  left: 100%;
+}
+
+.contact-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.contact-button:active {
+  transform: translateY(0);
 }
 
 /* Projects */
@@ -856,10 +912,7 @@ main {
                 React.createElement(TextScramble, { text: 'HELLO', className: '' })
               ),
               React.createElement('h1', { className: 'big-heading' },
-                React.createElement(TextScramble, { text: 'HELLO', className: '' })
-              ),
-              React.createElement('h1', { className: 'big-heading' },
-                React.createElement(TextScramble, { text: 'HELLO', className: '' })
+                React.createElement(TextScramble, { text: 'I\'M', className: '' })
               ),
               React.createElement('h1', { className: 'big-heading name-heading' },
                 React.createElement(TextScramble, { text: 'Eric Haslam', className: '' })
@@ -882,6 +935,16 @@ main {
               )
             )
           ),
+          // Contact section
+          React.createElement('div', { className: 'contact-section' },
+            React.createElement('div', { className: 'container' },
+              React.createElement('a', {
+                className: 'contact-button',
+                href: 'mailto:ericrhaslam@gmail.com',
+                'aria-label': 'Send email to Eric Haslam'
+              }, 'Get in Touch')
+            )
+          ),
 
           // Experience section
           React.createElement('section', { id: 'experience' },
@@ -889,7 +952,8 @@ main {
               React.createElement('h2', { className: 'section-heading' },
                 React.createElement(TextScramble, { text: '> experience.txt', className: '' })
               ),
-                React.createElement('div', { className: 'experience-item' },
+              React.createElement('ul', null,
+                React.createElement('li', { className: 'experience-item' },
                   React.createElement('strong', null,
                     React.createElement(TextScramble, {
                       text: 'Nucleus',
@@ -900,8 +964,7 @@ main {
                   React.createElement('div', { className: 'date' }, 'Aug 2025 – Present'),
                   React.createElement('p', null, 'Sourced and evaluated 20+ early-stage deep tech deals annually across healthcare, advanced manufacturing, and emerging technologies from Utahs higher education institutions. Conducted comprehensive due diligence and financial modeling on hardware and breakthrough technology companies, contributing to $700K+ in portfolio investments across 3 companies')
                 ),
-              React.createElement('ul', null,
-                React.createElement('li', null,
+                React.createElement('li', { className: 'experience-item' },
                   React.createElement('strong', null,
                     React.createElement(TextScramble, {
                       text: 'Utah Office of AI Policy',
@@ -912,7 +975,7 @@ main {
                   React.createElement('div', { className: 'date' }, 'Jan 2025 – Present'),
                   React.createElement('p', null, 'Researched AI policy frameworks that contributed to two technical-bill proposals passed to the state legislature. Analyzed XGBoost and neural-network models to inform recommendations for ethical, transparent AI use.')
                 ),
-                React.createElement('li', null,
+                React.createElement('li', { className: 'experience-item' },
                   React.createElement('strong', null,
                     React.createElement(TextScramble, {
                       text: 'Teva Pharmaceuticals',
@@ -923,7 +986,7 @@ main {
                   React.createElement('div', { className: 'date' }, 'May 2024 – Dec 2024'),
                   React.createElement('p', null, 'Built automated SQL pipelines to process and normalize complex pharmaceutical data from 40+ countries, automating translation and cleaning of inconsistent data formats. Built automated SQL pipelines for supplier-list updates and designed interactive Tableau dashboards to monitor compliance,boosting accuracy and speed of audits while handling 200+ vendors and 1,700+ APIs/excipients.')
                 ),
-                React.createElement('li', null,
+                React.createElement('li', { className: 'experience-item' },
                   React.createElement('strong', null,
                     React.createElement(TextScramble, {
                       text: 'Dearden Lab',
@@ -934,7 +997,7 @@ main {
                   React.createElement('div', { className: 'date' }, 'Sep 2023 – May 2024'),
                   React.createElement('p', null, '20% reduction in per-sample analysis time for cucurbituril binding studies by automating ion activation sequences and CCS data processing scripts in Python.')
                 ),
-                React.createElement('li', null,
+                React.createElement('li', { className: 'experience-item' },
                   React.createElement('strong', null,
                     React.createElement(TextScramble, {
                       text: 'Marsh',
@@ -968,7 +1031,7 @@ main {
                   ),
                   React.createElement('div', { className: 'project-preview' },
                     React.createElement('img', {
-                      src: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==',
+                      src: 'https://github.com/ehas1/portfolio/blob/main/docs/pydurf.png',
                       alt: 'pydurf code example'
                     })
                   )
@@ -985,7 +1048,7 @@ main {
                   ),
                   React.createElement('div', { className: 'project-preview' },
                     React.createElement('img', {
-                      src: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==',
+                      src: 'https://github.com/ehas1/portfolio/blob/main/docs/rl.png',
                       alt: 'Reinforcement Learning visualization'
                     })
                   )
@@ -1001,7 +1064,7 @@ main {
                 React.createElement(TextScramble, { text: '> volunteer.sys', className: '' })
               ),
               React.createElement('ul', null,
-                React.createElement('li', null,
+                React.createElement('li', { className: 'experience-item' },
                   React.createElement('strong', null,
                     React.createElement(TextScramble, {
                       text: 'Kirabo\'s Well',
@@ -1012,8 +1075,7 @@ main {
                   React.createElement('div', { className: 'date' }, 'September 2024 - Present'),
                   React.createElement('p', null, 'Co-founded non-profit organization and orchestrated 5+ fundraising events, generating $50,000+ in donations to fund 2 complete water well projects in underserved Ugandan communities. Managed a team of 35 volunteers and developed partnerships with 4 corporate sponsors, increasing organizational reach by 35%.')
                 ),
-              React.createElement('ul', null,
-                React.createElement('li', null,
+                React.createElement('li', { className: 'experience-item' },
                   React.createElement('strong', null,
                     React.createElement(TextScramble, {
                       text: 'Church of Jesus Christ of Latter-Day Saints - Porto Alegre, Brazil',
@@ -1023,7 +1085,6 @@ main {
                   React.createElement('div', { className: 'position' }, 'Humanitarian Volunteer'),
                   React.createElement('div', { className: 'date' }, 'July 2021 - July 2023'),
                   React.createElement('p', null, 'Coordinated activities for 100+ volunteers across multiple regions, improving operational efficiency by 25%. Delivered weekly training sessions to 20+ team members and established communication protocols between 5 Brazilian regions, enhancing information flow.')
-                ),
                 )
               )
             )
@@ -1040,7 +1101,7 @@ main {
                 React.createElement('div', { className: 'media-item featured' },
                   React.createElement('div', { className: 'media-image-container' },
                     React.createElement('img', {
-                      src: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==',
+                      src: 'https://raw.githubusercontent.com/ehas1/portfolio/main/docs/thereisnootherhome.webp',
                       alt: 'There Is No Other Home',
                       className: 'media-image'
                     }),
