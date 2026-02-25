@@ -1,274 +1,149 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eric Haslam</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+:root {
+    --bg-cream: #f6f5f0; 
+    --text-main: #000000;
+    --text-muted: #666666;
+}
 
-        :root {
-            --bg-color: #f4f4f0;
-            --text-color: #1a1a1a;
-            --accent-green: #2e5c3e;
-            --border-style: 2px solid #1a1a1a;
-        }
+body {
+    background-color: var(--bg-cream);
+    color: var(--text-main);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    overflow-y: scroll;
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Space Mono', monospace;
-        }
+.spline-container {
+    display: none;
+}
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
+/* Layout for the top header area */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline; 
+    margin-bottom: 4rem;
+}
 
-        /* Fullscreen Spline Background */
-        .spline-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-        }
+.logo {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2.2rem;
+    font-weight: 400; 
+    cursor: pointer;
+    letter-spacing: -0.5px;
+}
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+/* Clean, static navigation links */
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 1.5rem 2rem;
-            background: rgba(244, 244, 240, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: var(--border-style);
-            z-index: 100;
-        }
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    cursor: pointer;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--text-main); 
+    transition: opacity 0.2s ease; 
+}
 
-        .logo {
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
+.nav-links a:hover {
+    opacity: 0.5; 
+}
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
+/* The Smooth Slide-Up Section Logic */
+.section {
+    display: none;
+}
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
+.section.active {
+    display: block;
+    animation: slideUpReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
 
-        .nav-links a:hover {
-            color: var(--accent-green);
-        }
+@keyframes slideUpReveal {
+    0% { opacity: 0; transform: translateY(15px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
 
-        /* Main Content Container */
-        main {
-            padding: 8rem 2rem 4rem;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            pointer-events: none; /* Lets you click the 3D background */
-        }
+/* Typography & Spacing */
+h1, h2, h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
 
-        .section {
-            display: none;
-            width: 100%;
-            max-width: 800px;
-            background: rgba(255, 255, 255, 0.9);
-            border: var(--border-style);
-            padding: 3rem;
-            pointer-events: auto; /* Re-enables clicking inside the box */
-            box-shadow: 8px 8px 0px var(--accent-green);
-        }
+/* Clean List Items (No Boxes) */
+.job, .blog-list-item, .random-block {
+    margin-bottom: 2.5rem;
+}
 
-        .section.active {
-            display: block;
-            animation: fadeIn 0.4s ease-in-out;
-        }
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.2rem;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+.item-title {
+    font-weight: bold;
+    color: var(--text-main);
+    font-size: 1.1rem;
+}
 
-        h1, h2, h3 {
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1px;
-        }
+.item-meta {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
 
-        /* Experience Styles */
-        .job {
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px dashed var(--text-color);
-        }
-        
-        .job:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
+.item-description {
+    color: var(--text-muted);
+    line-height: 1.5;
+}
 
-        .job-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--accent-green);
-        }
+/* Journal Specifics */
+.blog-list-item {
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
 
-        .company {
-            font-style: italic;
-            margin-bottom: 0.5rem;
-        }
+.blog-list-item:hover {
+    opacity: 0.5;
+}
 
-        /* Blog Styles */
-        .blog-post {
-            border: var(--border-style);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            background: var(--bg-color);
-            transition: transform 0.2s;
-        }
+#post-reader {
+    display: none; /* Hidden by default until a post is clicked */
+}
 
-        .blog-post:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 4px 4px 0px var(--text-color);
-        }
+.back-btn {
+    display: inline-block;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--text-main);
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    padding-bottom: 2px;
+    margin-bottom: 2rem;
+    transition: opacity 0.2s ease;
+}
 
-        .date {
-            font-size: 0.8rem;
-            color: var(--accent-green);
-            margin-bottom: 0.5rem;
-        }
+.back-btn:hover {
+    opacity: 0.5;
+}
 
-        /* Gallery Styles */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .gallery-item {
-            width: 100%;
-            aspect-ratio: 1;
-            background: #ccc;
-            border: var(--border-style);
-            object-fit: cover;
-            filter: grayscale(100%);
-            transition: filter 0.3s;
-        }
-
-        .gallery-item:hover {
-            filter: grayscale(0%);
-        }
-    </style>
-</head>
-<body>
-
-    <div class="spline-container">
-        <iframe src="https://my.spline.design/cylindricallandscapes-KSi2EOKv2Hju5Q3SaTSCWI6v/"></iframe>
-    </div>
-
-    <nav>
-        <div class="logo" onclick="showSection('home')">Eric Haslam</div>
-        <div class="nav-links">
-            <a onclick="showSection('experience')">Experience</a>
-            <a onclick="showSection('journal')">Journal</a>
-            <a onclick="showSection('gallery')">Gallery</a>
-        </div>
-    </nav>
-
-    <main>
-        <div id="home" class="section active">
-            <h1>Welcome to the Clubhouse.</h1>
-            <p>Drag your cursor around the background to interact with the landscape.</p>
-        </div>
-
-        <div id="experience" class="section">
-            <h2>Experience</h2>
-            
-            <div class="job">
-                <div class="job-title">Incoming VOG Summer Intern</div>
-                <div class="company">Lincoln International | Dallas, TX</div>
-                <p>Upcoming summer internship in the Valuations and Opinions Group.</p>
-            </div>
-
-            <div class="job">
-                <div class="job-title">Office of AI Policy</div>
-                <div class="company">Google DeepMind</div>
-                <p>Worked on artificial intelligence policy and research initiatives.</p>
-            </div>
-
-            <div class="job">
-                <div class="job-title">Data Engineering Intern</div>
-                <div class="company">Teva Pharmaceuticals | Salt Lake City, UT</div>
-                <p>May 2024 – Dec 2024</p>
-                <p>Focused on data engineering pipelines, optimization, and Python-based toolsets.</p>
-            </div>
-        </div>
-
-        <div id="journal" class="section">
-            <h2>Journal</h2>
-            <p style="margin-bottom: 2rem;">Thoughts, updates, and field notes.</p>
-            
-            <div class="blog-post">
-                <div class="date">OCTOBER 24, 2026</div>
-                <h3>The State of AI Policy</h3>
-                <p>Reflecting on recent shifts in regulatory frameworks...</p>
-            </div>
-
-            <div class="blog-post">
-                <div class="date">SEPTEMBER 12, 2026</div>
-                <h3>Building this site</h3>
-                <p>Transitioning from standard templates to integrating 3D elements natively into the DOM...</p>
-            </div>
-        </div>
-
-        <div id="gallery" class="section">
-            <h2>Gallery</h2>
-            <div class="gallery-grid">
-                <img src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&q=80&w=400" alt="Golf" class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1535136125442-9f37c7639433?auto=format&fit=crop&q=80&w=400" alt="Architecture" class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&q=80&w=400" alt="Design" class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1622509172658-05244195190c?auto=format&fit=crop&q=80&w=400" alt="Streetwear" class="gallery-item">
-            </div>
-        </div>
-    </main>
-
-    <script>
-        function showSection(sectionId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(sec => sec.classList.remove('active'));
-
-            // Show target section
-            const target = document.getElementById(sectionId);
-            if(target) {
-                target.classList.add('active');
-            }
-        }
-    </script>
-</body>
-</html>
+/* Random Section Images */
+.random-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    filter: grayscale(100%);
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
