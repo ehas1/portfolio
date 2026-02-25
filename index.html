@@ -4,270 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eric Haslam</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
-
-        :root {
-            --bg-color: #f4f4f0;
-            --text-color: #1a1a1a;
-            --accent-green: #2e5c3e;
-            --border-style: 2px solid #1a1a1a;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Space Mono', monospace;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
-
-        /* Fullscreen Spline Background */
-        .spline-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 1.5rem 2rem;
-            background: rgba(244, 244, 240, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: var(--border-style);
-            z-index: 100;
-        }
-
-        .logo {
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-green);
-        }
-
-        /* Main Content Container */
-        main {
-            padding: 8rem 2rem 4rem;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            pointer-events: none; /* Lets you click the 3D background */
-        }
-
-        .section {
-            display: none;
-            width: 100%;
-            max-width: 800px;
-            background: rgba(255, 255, 255, 0.9);
-            border: var(--border-style);
-            padding: 3rem;
-            pointer-events: auto; /* Re-enables clicking inside the box */
-            box-shadow: 8px 8px 0px var(--accent-green);
-        }
-
-        .section.active {
-            display: block;
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h1, h2, h3 {
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1px;
-        }
-
-        /* Experience Styles */
-        .job {
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px dashed var(--text-color);
-        }
-        
-        .job:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .job-title {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--accent-green);
-        }
-
-        .company {
-            font-style: italic;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Blog Styles */
-        .blog-post {
-            border: var(--border-style);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            background: var(--bg-color);
-            transition: transform 0.2s;
-        }
-
-        .blog-post:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 4px 4px 0px var(--text-color);
-        }
-
-        .date {
-            font-size: 0.8rem;
-            color: var(--accent-green);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Gallery Styles */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .gallery-item {
-            width: 100%;
-            aspect-ratio: 1;
-            background: #ccc;
-            border: var(--border-style);
-            object-fit: cover;
-            filter: grayscale(100%);
-            transition: filter 0.3s;
-        }
-
-        .gallery-item:hover {
-            filter: grayscale(0%);
-        }
-    </style>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-
-    <div class="spline-container">
-        <iframe src="https://my.spline.design/cylindricallandscapes-KSi2EOKv2Hju5Q3SaTSCWI6v/"></iframe>
-    </div>
 
     <nav>
         <div class="logo" onclick="showSection('home')">Eric Haslam</div>
         <div class="nav-links">
+            <a onclick="showSection('home')">Home</a>
             <a onclick="showSection('experience')">Experience</a>
             <a onclick="showSection('journal')">Journal</a>
-            <a onclick="showSection('gallery')">Gallery</a>
+            <a onclick="showSection('random')">Random</a>
         </div>
     </nav>
 
     <main>
         <div id="home" class="section active">
-            <h1>Welcome to the Clubhouse.</h1>
-            <p>Drag your cursor around the background to interact with the landscape.</p>
+            <h2>Welcome</h2>
+            <p style="margin-bottom: 3rem;">hey, i'm eric haslam.</p>
+            <p style="margin-bottom: 1rem;">not sure how you found this, but i hope you enjoy. just a public artifact for my past, present, and future thoughts all in one place.</p>
+                </div>
+            </div>
         </div>
 
         <div id="experience" class="section">
-            <h2>Experience</h2>
+            <h2>experience</h2>
             
             <div class="job">
-                <div class="job-title">Incoming VOG Summer Intern</div>
-                <div class="company">Lincoln International | Dallas, TX</div>
-                <p>Upcoming summer internship in the Valuations and Opinions Group.</p>
+                <div class="item-header">
+                    <div class="item-title">summer analyst</div>
+                    <div class="item-meta">summer 2026</div>
+                </div>
+                <div class="item-description">lincoln international | dallas, tx</div>
+                <p> will be joining the asset-backed finance team developing financial tools</p>
             </div>
 
             <div class="job">
-                <div class="job-title">Office of AI Policy</div>
-                <div class="company">Google DeepMind</div>
-                <p>Worked on artificial intelligence policy and research initiatives.</p>
+                <div class="item-header">
+                    <div class="item-title">ai researcher</div>
+                    <div class="item-meta">2025-2026</div>
+                </div>
+                <div class="item-description">utah office of ai policy</div>
             </div>
 
             <div class="job">
-                <div class="job-title">Data Engineering Intern</div>
-                <div class="company">Teva Pharmaceuticals | Salt Lake City, UT</div>
-                <p>May 2024 – Dec 2024</p>
-                <p>Focused on data engineering pipelines, optimization, and Python-based toolsets.</p>
+                <div class="item-header">
+                    <div class="item-title">Data Engineering Intern</div>
+                    <div class="item-meta">2024</div>
+                </div>
+                <div class="item-description">teva pharmaceuticals | salt lake city, ut</div>
             </div>
         </div>
 
         <div id="journal" class="section">
             <h2>Journal</h2>
-            <p style="margin-bottom: 2rem;">Thoughts, updates, and field notes.</p>
             
-            <div class="blog-post">
-                <div class="date">OCTOBER 24, 2026</div>
-                <h3>The State of AI Policy</h3>
-                <p>Reflecting on recent shifts in regulatory frameworks...</p>
+            <div id="blog-list">
+                <div class="blog-list-item" onclick="openPost('journal/post-1.md')">
+                    <div class="item-header">
+                        <div class="item-title">The State of AI Policy</div>
+                        <div class="item-meta">Feb 26, 2026</div>
+                    </div>
+                </div>
+
+            
             </div>
 
-            <div class="blog-post">
-                <div class="date">SEPTEMBER 12, 2026</div>
-                <h3>Building this site</h3>
-                <p>Transitioning from standard templates to integrating 3D elements natively into the DOM...</p>
+            <div id="post-reader">
+                <button class="back-btn" onclick="closePost()">← Back to Entries</button>
+                <div id="post-content"></div>
             </div>
         </div>
 
-        <div id="gallery" class="section">
-            <h2>Gallery</h2>
-            <div class="gallery-grid">
-                <img src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&q=80&w=400" alt="Golf" class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1535136125442-9f37c7639433?auto=format&fit=crop&q=80&w=400" alt="Architecture" class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&q=80&w=400" alt="Design" class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1622509172658-05244195190c?auto=format&fit=crop&q=80&w=400" alt="Streetwear" class="gallery-item">
+        <div id="random" class="section">
+            <h2>Random</h2>
+            
+            <div class="random-block">
+                <div class="item-title" style="margin-bottom: 0.5rem;">perplexity of fortnite</div>
+                <p>coming soon cause i'm too busy doing acme homework</p>
             </div>
+
+            <div class="random-block">
+                <div class="item-title" style="margin-bottom: 0.5rem;">after working in vc</div>
+                <p>founders are some of the most interesting people, and some are quite oblivious to the world beyond</p>
+            </div>
+
+            
         </div>
     </main>
 
     <script>
+        // Main Navigation Logic
         function showSection(sectionId) {
-            // Hide all sections
             const sections = document.querySelectorAll('.section');
             sections.forEach(sec => sec.classList.remove('active'));
 
-            // Show target section
             const target = document.getElementById(sectionId);
             if(target) {
                 target.classList.add('active');
             }
+        }
+
+        // Journal Logic: Open a specific post
+        async function openPost(filename) {
+            try {
+                const response = await fetch(filename);
+                if (!response.ok) throw new Error("Post not found");
+                
+                const markdownText = await response.text();
+                const htmlContent = marked.parse(markdownText);
+                
+                // Inject content
+                document.getElementById('post-content').innerHTML = htmlContent;
+                
+                // Hide list, show reader
+                document.getElementById('blog-list').style.display = 'none';
+                document.getElementById('post-reader').style.display = 'block';
+            } catch (error) {
+                document.getElementById('post-content').innerHTML = "<p>Drafting this entry. Check back soon.</p>";
+                document.getElementById('blog-list').style.display = 'none';
+                document.getElementById('post-reader').style.display = 'block';
+            }
+        }
+
+        // Journal Logic: Close reader and go back to list
+        function closePost() {
+            document.getElementById('post-reader').style.display = 'none';
+            document.getElementById('blog-list').style.display = 'block';
         }
     </script>
 </body>
