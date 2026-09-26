@@ -1,165 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eric Haslam</title>
-    <link rel="stylesheet" href="css/main.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eric Haslam</title>
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-
-    <nav>
-        <div class="logo" onclick="showSection('home')">Eric Haslam</div>
-        <div class="nav-links">
-            <a onclick="showSection('home')">Home</a>
-            <a onclick="showSection('experience')">Experience</a>
-            <a onclick="showSection('journal')">Journal</a>
-            <a onclick="showSection('random')">Random</a>
-        </div>
-    </nav>
+  <div class="site">
 
     <main>
-        <div id="home" class="section active">
-            <h2>Welcome</h2>
-            <p style="margin-bottom: 3rem;">hey, i'm eric haslam.</p>
-            <p style="margin-bottom: 1rem;">not sure how you found this, but i hope you enjoy. just a public artifact for my past, present, and future thoughts all in one place.</p>
-                </div>
-            </div>
-        </div>
+      <section id="home" class="home">
+        <p><strong>Eric Haslam</strong></p>
 
-        <div id="experience" class="section">
-            <h2>experience</h2>
-            
-            <div class="job">
-                <div class="item-header">
-                    <div class="item-title">summer analyst</div>
-                    <div class="item-meta">summer 2026</div>
-                </div>
-                <div class="item-description">lincoln international | dallas, tx</div>
-                <p> will be joining the asset-backed finance team developing financial tools</p>
-            </div>
+        <p>I'm an incoming summer investor at <strong><a href="https://starwoodcapitalventures.com/">Starwood Capital Ventures in New York City.</a></strong>.</p>
 
-            <div class="job">
-                <div class="item-header">
-                    <div class="item-title">ai researcher</div>
-                    <div class="item-meta">2025-2026</div>
-                </div>
-                <div class="item-description">utah office of ai policy</div>
-            </div>
+        <p>I previously built models at <strong><a href="https://www.lincolninternational.com/">Lincoln International</a></strong>, and worked in data engineering at <strong><a href="https://www.tevapharm.com/">Teva Pharmaceuticals</a></strong>.</p>
 
-            <div class="job">
-                <div class="item-header">
-                    <div class="item-title">Data Engineering Intern</div>
-                    <div class="item-meta">2024</div>
-                </div>
-                <div class="item-description">teva pharmaceuticals | salt lake city, ut</div>
-            </div>
-        </div>
+        <p>I currently do private equity secondaries research under <strong><a href="https://scholar.google.com/citations?user=lzrajG8AAAAJ&hl=en">Dr. Bryan Boyer</a></strong> as well as a quantitative researcher for <strong><a href="https://silverfund.byu.edu/">Silver Fund</a></strong>. Previous research includes AI policy at the <strong><a href="https://commerce.utah.gov/ai/">Utah Office of AI Policy</a></strong> under <strong><a href="https://scholar.google.com/citations?user=4FDHLaIAAAAJ&hl=en">Dr. Alice Schwarze</a></strong> and cucurbituril modeling under <strong><a href="https://scholar.google.com/citations?user=EWp2jAMAAAAJ&hl=en">Dr. David Dearden.</a></strong>
 
-        <div id="journal" class="section">
-            <h2>Journal</h2>
-            
-            <div id="blog-list">
-                <div class="blog-list-item" onclick="openPost('journal/post-1.md')">
-                    <div class="item-header">
-                        <div class="item-title">The State of AI Policy</div>
-                        <div class="item-meta">Feb 26, 2026</div>
-                    </div>
-                </div>
-
-                <div class="blog-list-item" onclick="openPost('journal/post-2.md')">
-                    <div class="item-header">
-                        <div class="item-title">ditto</div>
-                        <div class="item-meta">Feb 20, 2026</div>
-                    </div>
-                </div>
-
-                <div class="blog-list-item" onclick="openPost('journal/post-3.md')">
-                    <div class="item-header">
-                        <div class="item-title">alakazam</div>
-                        <div class="item-meta">Feb 15, 2026</div>
-                    </div>
-                </div>
-
-                <div class="blog-list-item" onclick="openPost('journal/post-4.md')">
-                    <div class="item-header">
-                        <div class="item-title">acme</div>
-                        <div class="item-meta">Feb 10, 2026</div>
-                    </div>
-                </div>
-
-                <div class="blog-list-item" onclick="openPost('journal/post-5.md')">
-                    <div class="item-header">
-                        <div class="item-title">mmbio</div>
-                        <div class="item-meta">Feb 01, 2026</div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="post-reader">
-                <button class="back-btn" onclick="closePost()">← Back to Entries</button>
-                <div id="post-content"></div>
-            </div>
-        </div>
-
-        <div id="random" class="section">
-            <h2>Random</h2>
-            
-            <div class="random-block">
-                <div class="item-title" style="margin-bottom: 0.5rem;">perplexity of fortnite</div>
-                <p>coming soon cause i'm too busy doing acme homework</p>
-            </div>
-
-            <div class="random-block">
-                <div class="item-title" style="margin-bottom: 0.5rem;">after working in vc</div>
-                <p>founders are some of the most interesting people, and some are quite oblivious to the world beyond</p>
-            </div>
-
-            
-        </div>
+        <p><a href="mailto:ericrhaslam@gmail.com">Email me</a></p>
+      </section>
     </main>
-
-    <script>
-        // Main Navigation Logic
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(sec => sec.classList.remove('active'));
-
-            const target = document.getElementById(sectionId);
-            if(target) {
-                target.classList.add('active');
-            }
-        }
-
-        // Journal Logic: Open a specific post
-        async function openPost(filename) {
-            try {
-                const response = await fetch(filename);
-                if (!response.ok) throw new Error("Post not found");
-                
-                const markdownText = await response.text();
-                const htmlContent = marked.parse(markdownText);
-                
-                // Inject content
-                document.getElementById('post-content').innerHTML = htmlContent;
-                
-                // Hide list, show reader
-                document.getElementById('blog-list').style.display = 'none';
-                document.getElementById('post-reader').style.display = 'block';
-            } catch (error) {
-                document.getElementById('post-content').innerHTML = "<p>Drafting this entry. Check back soon.</p>";
-                document.getElementById('blog-list').style.display = 'none';
-                document.getElementById('post-reader').style.display = 'block';
-            }
-        }
-
-        // Journal Logic: Close reader and go back to list
-        function closePost() {
-            document.getElementById('post-reader').style.display = 'none';
-            document.getElementById('blog-list').style.display = 'block';
-        }
-    </script>
+  </div>
 </body>
 </html>
-

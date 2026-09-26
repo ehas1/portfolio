@@ -1,151 +1,86 @@
-/* main.css - The "Physical Intelligence" Aesthetic (Clean, No Boxes) */
-
 :root {
-    --bg-cream: #f6f5f0; 
-    --text-main: #000000;
-    --text-muted: #666666;
+  --text: #111;
+  --muted: #555;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-    background-color: var(--bg-cream);
-    color: var(--text-main);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    font-size: 15px;
-    line-height: 1.6;
-    max-width: 900px;
-    margin: 4rem auto;
-    padding: 0 2rem;
-    overflow-y: scroll;
+  margin: 0;
+  background: #fff;
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
 }
 
-.spline-container {
-    display: none;
+.site {
+  width: min(590px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 30px 0 100px;
 }
 
-/* Layout for the top header area */
+.site-header {
+  margin: 0;
+}
+
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline; 
-    margin-bottom: 4rem;
+  display: flex;
+  gap: 20px;
 }
 
-.logo {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 2.2rem;
-    font-weight: 400; 
-    cursor: pointer;
-    letter-spacing: -0.5px;
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
-/* Clean, static navigation links */
-.nav-links {
-    display: flex;
-    gap: 1.5rem;
+nav a {
+  text-decoration: none;
 }
 
-.nav-links a {
-    color: var(--text-main);
-    text-decoration: none;
-    cursor: pointer;
-    padding-bottom: 2px;
-    border-bottom: 1px solid var(--text-main); 
-    transition: opacity 0.2s ease; 
+nav a:first-child {
+  text-decoration: underline;
 }
 
-.nav-links a:hover {
-    opacity: 0.5; 
+main {
+  padding-top: 103px;
 }
 
-/* The Smooth Slide-Up Section Logic */
-.section {
-    display: none;
+section {
+  scroll-margin-top: 30px;
 }
 
-.section.active {
-    display: block;
-    animation: slideUpReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.home {
+  max-width: 560px;
 }
 
-@keyframes slideUpReveal {
-    0% { opacity: 0; transform: translateY(15px); }
-    100% { opacity: 1; transform: translateY(0); }
+p {
+  margin: 0 0 16px;
 }
 
-/* Typography & Spacing */
-h1, h2, h3 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-weight: 400;
-    margin-bottom: 2rem;
-    font-size: 1.8rem;
+.home p:first-child {
+  margin-bottom: 22px;
 }
 
-/* Clean List Items (No Boxes) */
-.job, .blog-list-item, .random-block {
-    margin-bottom: 2.5rem;
+strong {
+  font-weight: 700;
 }
 
-.item-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 0.2rem;
-}
+@media (max-width: 640px) {
+  .site {
+    width: min(590px, calc(100% - 32px));
+    padding-top: 22px;
+  }
 
-.item-title {
-    font-weight: bold;
-    color: var(--text-main);
-    font-size: 1.1rem;
-}
+  main {
+    padding-top: 80px;
+  }
 
-.item-meta {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-}
-
-.item-description {
-    color: var(--text-muted);
-    line-height: 1.5;
-}
-
-/* Journal Specifics */
-.blog-list-item {
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-}
-
-.blog-list-item:hover {
-    opacity: 0.5;
-}
-
-#post-reader {
-    display: none; /* Hidden by default until a post is clicked */
-}
-
-.back-btn {
-    display: inline-block;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--text-main);
-    color: var(--text-main);
-    font-family: inherit;
-    font-size: 1rem;
-    cursor: pointer;
-    padding-bottom: 2px;
-    margin-bottom: 2rem;
-    transition: opacity 0.2s ease;
-}
-
-.back-btn:hover {
-    opacity: 0.5;
-}
-
-/* Random Section Images */
-.random-image {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    filter: grayscale(100%);
-    margin-top: 1rem;
-    margin-bottom: 2rem;
 }
